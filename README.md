@@ -63,3 +63,61 @@ wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.7/cri-docker
 sudo dpkg -i cri-dockerd_0.3.7.3-0.ubuntu-jammy_amd64.deb
 cd -
 ```
+
+
+### init master node
+
+```
+sudo kubeadm init --cri-socket --pod-network-cidr=10.244.0.0/16 unix:///var/run/cri-dockerd.sock 
+```
+
+You should see output like this:
+```
+Your Kubernetes control-plane has initialized successfully!
+
+To start using your cluster, you need to run the following as a regular user:
+
+  mkdir -p $HOME/.kube
+  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Alternatively, if you are the root user, you can run:
+
+  export KUBECONFIG=/etc/kubernetes/admin.conf
+
+You should now deploy a pod network to the cluster.
+Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
+  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+Then you can join any number of worker nodes by running the following on each as root:
+
+kubeadm join 10.52.2.142:6443 --token qnv6br.8xgtotg9sy6lu3pj \
+        --discovery-token-ca-cert-hash sha256:f5cc26d25c380a445a688d11e9403762ce6f4cec355017e54fef038b0f06e916 
+```
+
+Try to run the commands as root user:
+
+```
+sudo -s
+```
+
+```
+echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> ~/.bashrc 
+```
+
+create a network pod
+
+```
+kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+```
+
+Check the network status
+
+```
+kubectl get pods --all-namespaces
+```
+
+reset
+```
+
+```
