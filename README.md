@@ -70,7 +70,7 @@ cd -
 ### init master node
 
 ```
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///var/run/cri-dockerd.sock 
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --cri-socket unix:///var/run/cri-dockerd.sock --node-name scheduler
 ```
 
 You should see output like this:
@@ -117,8 +117,12 @@ Join the network
 ```
 sudo kubeadm join 10.52.2.142:6443 --token s3bpyl.5ad51wzm6o6jubyd \
         --discovery-token-ca-cert-hash sha256:7a46f5714c5b0dbf7024833ce21196842b54b2acc8f3a81057e39818e0b538d6 \
-        --cri-socket unix:///var/run/cri-dockerd.sock
+        --cri-socket unix:///var/run/cri-dockerd.sock \
+        --node-name worker-1
 ```
+
+If you have multiple workers, make sure you modify the `node-name` above because Kubernetes doesn't
+allow workers to have same name.
 
 
 
