@@ -20,6 +20,26 @@ git clone git@github.com:mengwanguc/gpemu-k8s.git
 cd gpemu-k8s
 ```
 
-# gitc
+## gitc
 
-cp gitc /usr/local/bin
+```
+sudo cp gitc /usr/local/bin
+```
+
+## Install Docker
+
+```
+bash setup/install-docker.sh
+```
+
+### Verify docker installation
+
+```
+sudo docker run hello-world
+```
+
+
+### Install kubedam
+
+
+
