@@ -83,15 +83,7 @@ kubeadm join 10.52.2.142:6443 --token s3bpyl.5ad51wzm6o6jubyd \
 
 *Take a note of your own output , as you will need it to join the cluster*
 
-Try to run the commands as root user:
-
-<!-- ```
-sudo -s
-```
-
-```
-echo 'export KUBECONFIG=/etc/kubernetes/admin.conf' >> ~/.bashrc 
-``` -->
+Set up configuration file so that kubectl can run as non-root user.
 
 ```
 mkdir -p $HOME/.kube
@@ -112,6 +104,8 @@ Check the network status
 kubectl get pods --all-namespaces
 ```
 
+### Run on worker node
+
 Join the network
 
 ```
@@ -127,7 +121,7 @@ allow workers to have same name.
 
 
 
-reset
+### Reset kubeadm
 ```
 sudo kubeadm reset --cri-socket unix:///var/run/cri-dockerd.sock
 
