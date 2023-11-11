@@ -20,7 +20,7 @@ NOTE: the example below is for Meng. You should modify it to your own account.
 ```
 git config --global user.email "mengwanguc@gmail.com"
 git config --global user.name "Meng Wang"
-``
+```
 
 ## clone this repo
 
