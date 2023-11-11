@@ -13,6 +13,15 @@ cat ~/.ssh/id_rsa.pub
 ```
 Copy and paste into: https://github.com/settings/keys
 
+### Configure github
+
+NOTE: the example below is for Meng. You should modify it to your own account.
+
+```
+git config --global user.email "mengwanguc@gmail.com"
+git config --global user.name "Meng Wang"
+``
+
 ## clone this repo
 
 ```
@@ -46,4 +55,11 @@ bash setup/install-kubeadm.sh
 ```
 
 
+### install cri-docker
 
+```
+cd /tmp
+wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.7/cri-dockerd_0.3.7.3-0.ubuntu-jammy_amd64.deb
+sudo dpkg -i cri-dockerd_0.3.7.3-0.ubuntu-jammy_amd64.deb
+cd -
+```
