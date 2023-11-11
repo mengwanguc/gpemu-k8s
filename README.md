@@ -1,7 +1,7 @@
 # gpemu-k8s
 
 
-# Set up SSH key
+## Set up SSH key
 
 ```
 ssh-keygen -t rsa -b 4096
