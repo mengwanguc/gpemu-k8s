@@ -39,7 +39,11 @@ sudo docker run hello-world
 ```
 
 
-### Install kubedam
+### Install kubeadm
+
+```
+bash setup/install-kubeadm.sh
+```
 
 
 
