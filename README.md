@@ -122,6 +122,8 @@ allow workers to have same name.
 
 
 ### Reset kubeadm
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+
 ```
 sudo kubeadm reset --cri-socket unix:///var/run/cri-dockerd.sock
 
