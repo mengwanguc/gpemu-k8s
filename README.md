@@ -132,10 +132,3 @@ sudo rm -r /etc/cni/net.d
 sudo rm -rf ~/.kube /etc/kubernetes /var/lib/etcd /var/lib/kubelet
 
 ```
-
-
-## Create docker
-
-```
-sudo docker build -t wangm12/k8s-host-device-plugin .
-```
