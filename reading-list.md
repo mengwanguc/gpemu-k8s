@@ -22,3 +22,5 @@ https://docs.xilinx.com/r/en-US/Xilinx_Kubernetes_Device_Plugin/1.-Install-Docke
 https://github.com/vikaschoudhary16/sfc-device-plugin
 
 A very think example which is good to learn from: https://github.com/everpeace/k8s-host-device-plugin
+
+https://github.com/kubernetes/kubernetes/blob/v1.28.3/test/images/sample-device-plugin/sampledeviceplugin.go#L1

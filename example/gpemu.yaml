@@ -8,10 +8,9 @@ data:
     {
       "resourceName": "github.com/e-gpu",
       "socketName": "gpemu.sock",
-      "numDevices": 2,
       "eGPUs": [{
         "hostPath": "/edev/egpu*",
         "containerPath": "/edev/egpu*",
-        "permission": "r"
+        "permission": "rw"
       }]
     }

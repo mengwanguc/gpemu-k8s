@@ -31,7 +31,7 @@ kubectl get pods --all-namespaces
 kubectl get daemonsets --all-namespaces
 kubectl describe node worker-1
 kubectl describe pod gpemu-k8s-device-plugin-daemonset-sdzd9 -n kube-system
-kubectl logs gpemu-k8s-device-plugin-daemonset-7nbt8 -n kube-system
+kubectl logs gpemu-k8s-device-plugin-daemonset-h5d75 -n kube-system
 kubectl logs gpemu-test
 kubectl describe pod gpemu-test
 ```
@@ -48,9 +48,11 @@ kubectl delete configmap gpemu -n kube-system
 ```
 sudo mkdir /edev
 sudo chown -R cc edev
-# touch /edev/egpu1 /edev/egpu2
-sudo mknod -m 666 egpu0 b 262 0
-sudo mknod -m 666 egpu1 b 262 1
+touch /edev/egpu0 /edev/egpu1 /edev/egpu2 
+# sudo mknod -m 666 egpu0 b 262 0
+# sudo mknod -m 666 egpu1 b 262 1
+# sudo mknod -m 666 egpu2 b 262 1
+
 ls /edev
 ```
 Reference to major and minor numbers

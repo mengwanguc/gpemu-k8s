@@ -23,7 +23,6 @@ type GPEmuDevicePluginConfig struct {
 	ResourceName               string        `json:"resourceName"`
 	SocketName                 string        `json:"socketName"`
 	EGPUs                []*EGPU `json:"eGPUs"`
-	NumDevices                 int           `json:"numDevices"`
 	HealthCheckIntervalSeconds time.Duration `json:"healthCheckIntervalSeconds"`
 }
 
@@ -59,7 +58,9 @@ func NewGPEmuDevicePlugin(config GPEmuDevicePluginConfig) (*GPEmuDevicePlugin, e
 
 	log.Println("In NewGPEmuDevicePlugin, expandedEGPUs: ", expandedEGPUs)
 
-	var devs = make([]*pluginapi.Device, config.NumDevices)
+	log.Println("len(expandedEGPUs): ", len(expandedEGPUs))
+
+	var devs = make([]*pluginapi.Device, len(expandedEGPUs))
 
 	for i, _ := range devs {
 		devs[i] = &pluginapi.Device{
@@ -67,6 +68,9 @@ func NewGPEmuDevicePlugin(config GPEmuDevicePluginConfig) (*GPEmuDevicePlugin, e
 			Health: pluginapi.Healthy,
 		}
 	}
+
+	log.Println("devs: ", devs)
+
 
 	healthCheckIntervalSeconds := defaultHealthCheckIntervalSeconds
 	if config.HealthCheckIntervalSeconds > 0 {
@@ -216,19 +220,25 @@ func (m *GPEmuDevicePlugin) Allocate(ctx context.Context, r *pluginapi.AllocateR
 
 	for i, request := range r.GetContainerRequests() {
 		log.Println("request.DevicesIDs: ", request.DevicesIDs)
-		ds := make([]*pluginapi.DeviceSpec, len(request.DevicesIDs))
+		ds := make([]*pluginapi.Mount, len(request.DevicesIDs))
 		log.Println("m.eGPUs: len:", len(m.eGPUs), "value: ", m.eGPUs)
 		for j, deviceID := range request.DevicesIDs {
 			deviceIDInt, _ := strconv.Atoi(deviceID)
 			log.Println(deviceIDInt)
-			ds[j] = &pluginapi.DeviceSpec{
+			// ds[j] = &pluginapi.DeviceSpec{
+			// 	HostPath:      m.eGPUs[deviceIDInt].HostPath,
+			// 	ContainerPath: m.eGPUs[deviceIDInt].ContainerPath,
+			// 	Permissions:   m.eGPUs[deviceIDInt].Permission,
+			// }
+			ds[j] = &pluginapi.Mount{
 				HostPath:      m.eGPUs[deviceIDInt].HostPath,
 				ContainerPath: m.eGPUs[deviceIDInt].ContainerPath,
-				Permissions:   m.eGPUs[deviceIDInt].Permission,
+				ReadOnly:      false,
 			}
 		}
 		ress[i] = &pluginapi.ContainerAllocateResponse{
-			Devices: ds,
+			// Devices: ds,
+			Mounts: ds,
 		}
 		log.Println("ds: ", ds)
 	}

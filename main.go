@@ -65,7 +65,7 @@ L:
 			for _, hd := range devicePlugin.eGPUs {
 				expandedEGPUsStr = append(expandedEGPUsStr, fmt.Sprintf("%+v", hd))
 			}
-			log.Printf("expanded host devices: %s\n", strings.Join(expandedEGPUsStr, ","))
+			log.Printf("expanded egpu devices: %s\n", strings.Join(expandedEGPUsStr, ","))
 
 			if err := devicePlugin.Serve(); err != nil {
 				log.Println("Could not contact Kubelet, retrying. Did you enable the device plugin feature gate?")
