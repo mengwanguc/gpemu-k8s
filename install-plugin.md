@@ -11,11 +11,11 @@ sudo docker login
 ## Create docker
 
 ```
-sudo docker build -t wangm12/gpemu-k8s-device-plugin .
+sudo docker build -t wangm12/gpemu-k8s-device-plugin:v1.12 .
 
-sudo docker run wangm12/gpemu-k8s-device-plugin
+sudo docker run wangm12/gpemu-k8s-device-plugin:v1.12
 
-sudo docker push wangm12/gpemu-k8s-device-plugin
+sudo docker push wangm12/gpemu-k8s-device-plugin:v1.12
 ```
 
 ```
@@ -31,7 +31,7 @@ kubectl get pods --all-namespaces
 kubectl get daemonsets --all-namespaces
 kubectl describe node worker-1
 kubectl describe pod gpemu-k8s-device-plugin-daemonset-sdzd9 -n kube-system
-kubectl logs gpemu-k8s-device-plugin-daemonset-h5d75 -n kube-system
+kubectl logs gpemu-k8s-device-plugin-daemonset-56xpg -n kube-system
 kubectl logs gpemu-test
 kubectl describe pod gpemu-test
 ```
