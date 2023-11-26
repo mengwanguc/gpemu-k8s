@@ -109,12 +109,16 @@ sudo rm -rf ~/.kube
 
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
 
+# echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 cat <<EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 
 sudo apt update
 
-sudo apt install -y kubernetes-cni=0.6.0-00
-sudo apt install -y kubeadm=1.12.0-00 kubelet=1.12.0-00 kubectl=1.12.0-00
+# sudo apt install -y kubernetes-cni=0.6.0-00
+# sudo apt-get install -y kubeadm=1.12.0-00 kubelet=1.12.0-00 kubectl=1.12.0-00
+sudo apt-get install -y kubelet=1.12.10-00 kubeadm=1.12.10-00 kubectl=1.12.10-00
 ```
+
+
