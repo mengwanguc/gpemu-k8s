@@ -21,8 +21,8 @@ sudo docker push wangm12/gpemu-k8s-device-plugin:v1.12
 ```
 kubectl create -f gpemu.yaml
 kubectl create -f gpemu-device-plugin.yaml
-kubectl create -f test-pod.yml 
-kubectl create -f test-pod-2.yml 
+kubectl create -f test-pod.yaml 
+kubectl create -f test-pod-2.yaml 
 ```
 
 ```
@@ -31,9 +31,10 @@ kubectl get pods --all-namespaces
 kubectl get daemonsets --all-namespaces
 kubectl describe node worker-1
 kubectl describe pod gpemu-k8s-device-plugin-daemonset-sdzd9 -n kube-system
-kubectl logs gpemu-k8s-device-plugin-daemonset-56xpg -n kube-system
+kubectl logs gpemu-k8s-device-plugin-daemonset-pd2pv -n kube-system
 kubectl logs gpemu-test
 kubectl describe pod gpemu-test
+kubectl describe pod gpemu-test-2
 ```
 
 ```
@@ -47,7 +48,7 @@ kubectl delete configmap gpemu -n kube-system
 
 ```
 sudo mkdir /edev
-sudo chown -R cc edev
+sudo chown -R cc /edev
 touch /edev/egpu0 /edev/egpu1 /edev/egpu2 
 # sudo mknod -m 666 egpu0 b 262 0
 # sudo mknod -m 666 egpu1 b 262 1
