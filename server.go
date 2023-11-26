@@ -11,7 +11,7 @@ import (
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
-	pluginapi "k8s.io/kubelet/pkg/apis/deviceplugin/v1beta1"
+	pluginapi "k8s.io/kubernetes/pkg/kubelet/apis/deviceplugin/v1beta1"
 )
 
 const (
@@ -261,9 +261,6 @@ func (m *GPEmuDevicePlugin) PreStartContainer(context.Context, *pluginapi.PreSta
 	return &pluginapi.PreStartContainerResponse{}, nil
 }
 
-func (m *GPEmuDevicePlugin) GetPreferredAllocation(context.Context, *pluginapi.PreferredAllocationRequest) (*pluginapi.PreferredAllocationResponse, error) {
-	return &pluginapi.PreferredAllocationResponse{}, nil
-}
 
 func (m *GPEmuDevicePlugin) cleanup() error {
 	if err := os.Remove(m.socket); err != nil && !os.IsNotExist(err) {
